@@ -193,7 +193,7 @@
       <div class="tb-cell"><div class="k">Idioma</div><div class="v">Español (nativo)</div></div>
     </div>
 
-    <p class="lead">Tres proyectos reales documentados a continuación: el problema que resolvían, cómo se construyeron y el repositorio con el código. Cada uno corre en producción o tiene una demo funcional enlazada.</p>
+    <p class="lead">No son ejercicios de práctica: los tres corren en producción o tienen una demo funcionando, con el código abierto en el repositorio. A continuación, el problema real detrás de cada uno, cómo lo resolví, y con qué.</p>
   </header>
 
   <div class="ruler" aria-hidden="true"></div>
@@ -212,8 +212,9 @@
     </figure>
 
     <div class="narrative">
-      <p>Para Miami Fashion Week (MIAFW) construí una aplicación de <strong>prueba virtual de prendas</strong>: el visitante elige una pieza del catálogo, sube una foto de cuerpo completo y ve cómo le queda, generado con IA (FASHN API).</p>
-      <p>El acceso funciona en dos modos: por código enviado al correo (para navegar antes del evento) o por QR físico en el stand (para probarse prendas al instante). Un sistema de créditos con Stripe controla cuántas pruebas puede hacer cada usuario, y el panel de administración gestiona diseñadores, colecciones, prendas y el evento completo.</p>
+      <p>En un evento de moda nadie quiere hacer fila para probarse una prenda. Para Miami Fashion Week (MIAFW) desarrollé <strong>The Fitting Room</strong>: el visitante sube una foto de cuerpo completo, elige una pieza del catálogo, y una IA (FASHN API) le muestra en segundos cómo le queda puesta.</p>
+      <p>El acceso funciona en dos modos: código enviado al correo para navegar antes del evento, o QR físico en el stand para probarse prendas al instante. Un sistema de créditos con Stripe controla cuántas pruebas puede hacer cada usuario.</p>
+      <p>Lo más delicado no fue la IA, sino que un mismo sistema atendiera bien dos flujos muy distintos — alguien navegando desde su casa y alguien escaneando un QR en medio de un evento en vivo — sin duplicar lógica ni romper uno al ajustar el otro. El panel de administración gestiona diseñadores, colecciones, prendas y el evento completo.</p>
     </div>
 
     <figure class="plate">
@@ -223,7 +224,7 @@
 
     <div class="specs">
       <div class="spec-row"><div class="k">Cliente</div><div class="v">Miami Fashion Week (MIAFW)</div></div>
-      <div class="spec-row"><div class="k">Mi rol</div><div class="v">Desarrollo full stack, de la base de datos al despliegue</div></div>
+      <div class="spec-row"><div class="k">Mi rol</div><div class="v">Único desarrollador — de la base de datos al despliegue</div></div>
       <div class="spec-row"><div class="k">Stack</div><div class="v"><span class="chips"><span>React</span><span>Vite</span><span>Express</span><span>Prisma</span><span>MariaDB</span><span>Stripe</span><span>Google OAuth</span><span>FASHN API</span></span></div></div>
       <div class="spec-row"><div class="k">Ingeniería</div><div class="v">Rate limiting, CSRF, pruebas automatizadas y despliegue continuo con GitHub Actions</div></div>
       <div class="spec-row"><div class="k">Repositorio</div><div class="v"><a class="repo-link" href="https://github.com/eduardoalopezt2004-oss/simulator-vton-portfolio" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>simulator-vton-portfolio</a></div></div>
@@ -246,8 +247,9 @@
     </figure>
 
     <div class="narrative">
-      <p>Un negocio de repuestos y lubricantes necesitaba dejar de llevar el inventario en hojas de cálculo: no sabían qué se estaba por agotar hasta que ya faltaba, y contar el stock a mano tomaba horas.</p>
-      <p>Construí un sistema con <strong>escaneo de códigos QR</strong> para registrar entradas y salidas en segundos, un dashboard que separa el stock del local y del depósito y marca en rojo lo crítico, y un módulo de ventas con conversión automática USD/Bs. Incluye reportes por categoría, movimientos e inventario, e importación de documentos de proveedores con OCR.</p>
+      <p>Contar el inventario a mano tomaba horas, y para cuando terminaban, algo ya se había agotado. Un negocio de repuestos y lubricantes llevaba el stock en hojas de cálculo que nadie confiaba del todo.</p>
+      <p>Construí un sistema con <strong>escaneo de códigos QR</strong> para registrar entradas y salidas en segundos, un dashboard que separa el stock del local y del depósito, y marca en rojo lo crítico antes de que se convierta en una venta perdida. Un módulo de ventas con conversión automática USD/Bs, reportes por categoría y movimientos, e importación de documentos de proveedores con OCR completan el sistema.</p>
+      <p>El punto más delicado fue el modelo de datos: local y depósito debían compartir el mismo catálogo de productos pero llevar existencias y alertas completamente independientes, sin que mover una unidad de un lado rompiera el conteo del otro.</p>
     </div>
 
     <figure class="plate">
@@ -280,8 +282,9 @@
     </figure>
 
     <div class="narrative">
-      <p>Un grupo de ahorro con varios participantes principales y decenas de aportantes necesitaba una forma clara de ver quién había aportado cuánto, sin depender de una hoja de cálculo compartida que cualquiera podía romper por error.</p>
-      <p>Diseñé un panel con roles (admin, editor, visor) donde cada aportante queda asociado a un participante principal, con gráficas de distribución, un ranking de los mayores aportantes y exportación a JSON, CSV y PDF para llevar registro fuera del sistema.</p>
+      <p>Un grupo de ahorro con varios participantes principales y decenas de aportantes llevaba las cuentas en una hoja compartida que cualquiera podía editar, y un solo error de fórmula bastaba para desordenar los totales de todos.</p>
+      <p>Diseñé un panel con roles de acceso (admin, editor, visor) donde cada aportante queda asociado a un participante principal, con gráficas de distribución, un ranking de los mayores aportantes y exportación a JSON, CSV y PDF para llevar registro fuera del sistema.</p>
+      <p>El diseño tenía que resolver algo simple en apariencia pero fácil de arruinar: que un editor pudiera registrar aportes sin poder tocar usuarios ni configuración, y que los totales y porcentajes se recalcularan solos con cada cambio, sin que nadie tuviera que revisarlos a mano.</p>
     </div>
 
     <figure class="plate">
