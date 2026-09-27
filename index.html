@@ -1,0 +1,333 @@
+<title>Eduardo López</title>
+<meta name="description" content="Portafolio de desarrollo full stack y mobile: tres sistemas reales, de la base de datos a producción.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F1F4F7;
+    --panel:#E3E9EF;
+    --panel-2:#D6DEE6;
+    --ink:#101826;
+    --muted:#57697A;
+    --line:#2F5C82;
+    --line-soft:#2F5C8255;
+    --accent:#D9782E;
+    --accent-ink:#3A1F0C;
+    --good:#2E7D5B;
+    --radius:2px;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#0A1A29;
+      --panel:#10263B;
+      --panel-2:#173352;
+      --ink:#E9EFF5;
+      --muted:#8CA0B3;
+      --line:#4A8AC0;
+      --line-soft:#4A8AC055;
+      --accent:#E8A33D;
+      --accent-ink:#241505;
+      --good:#4FBE8C;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0A1A29;
+    --panel:#10263B;
+    --panel-2:#173352;
+    --ink:#E9EFF5;
+    --muted:#8CA0B3;
+    --line:#4A8AC0;
+    --line-soft:#4A8AC055;
+    --accent:#E8A33D;
+    --accent-ink:#241505;
+    --good:#4FBE8C;
+    color-scheme: dark;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    padding-inline:0;
+  }
+  ::selection{ background:var(--accent); color:var(--accent-ink); }
+
+  .wrap{ max-width:900px; margin-inline:auto; padding-inline:20px; }
+
+  h1,h2,h3{ font-family:"Bricolage Grotesque",system-ui,sans-serif; text-wrap:balance; margin:0; }
+  .mono{ font-family:"IBM Plex Mono",ui-monospace,monospace; }
+  a{ color:var(--line); }
+  a.repo-link{
+    color:var(--ink); text-decoration:none; display:inline-flex; align-items:center; gap:.4em;
+    border-bottom:1.5px solid var(--line); padding-block:.05em;
+  }
+  a.repo-link:hover{ border-color:var(--accent); color:var(--accent); }
+  a.repo-link svg{ width:.9em; height:.9em; flex:none; }
+
+  /* --- Ruler divider: a real drafting-table detail --- */
+  .ruler{
+    height:16px; margin-block:36px;
+    background-image: repeating-linear-gradient(90deg, var(--line-soft) 0 1px, transparent 1px 8px);
+    background-position:left center; background-repeat:repeat-x; background-size:auto 100%;
+    position:relative;
+  }
+  .ruler::before{
+    content:""; position:absolute; inset:0; background-image: repeating-linear-gradient(90deg, var(--line) 0 1.5px, transparent 1.5px 40px);
+    opacity:.9;
+  }
+
+  /* --- Title block (engineering drawing corner stamp) --- */
+  header.titleblock{ padding-block:56px 0; }
+  .tb-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:24px; flex-wrap:wrap; }
+  .tb-eyebrow{ font-size:.78rem; letter-spacing:.14em; color:var(--muted); text-transform:uppercase; }
+  h1.name{ font-size:clamp(2.4rem,6vw,3.6rem); font-weight:700; letter-spacing:-.01em; margin-top:6px; }
+  .tb-role{ font-size:1.05rem; color:var(--muted); margin-top:10px; max-width:56ch; }
+  .stamp{
+    font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.08em;
+    color:var(--good); border:1.6px solid var(--good); border-radius:4px;
+    padding:6px 10px; transform:rotate(-4deg); white-space:nowrap; flex:none;
+  }
+  .tb-grid{
+    margin-top:34px; border-top:1.5px solid var(--line); border-bottom:1.5px solid var(--line);
+    display:grid; grid-template-columns:repeat(4,1fr);
+  }
+  .tb-cell{ padding:14px 16px; border-left:1.5px solid var(--line); }
+  .tb-cell:first-child{ border-left:none; }
+  .tb-cell .k{ font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.1em; color:var(--muted); text-transform:uppercase; }
+  .tb-cell .v{ margin-top:5px; font-size:.92rem; }
+  @media (max-width:640px){
+    .tb-grid{ grid-template-columns:repeat(2,1fr); }
+    .tb-cell:nth-child(3){ border-left:none; }
+  }
+
+  .lead{ margin-top:26px; max-width:62ch; color:var(--ink); font-size:1.02rem; }
+
+  /* --- Project sheets --- */
+  .sheet{ margin-top:8px; }
+  .sheet-head{ display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; }
+  .sheet-num{ font-family:"IBM Plex Mono",monospace; color:var(--accent); font-size:.9rem; letter-spacing:.05em; }
+  .sheet h2{ font-size:clamp(1.5rem,3.4vw,2rem); }
+  .sheet-tag{ font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.06em; color:var(--muted); text-transform:uppercase; margin-left:auto; }
+
+  .plate{
+    margin-top:20px; border:1.5px solid var(--line); background:var(--panel);
+    padding:10px; position:relative;
+  }
+  .plate::before{
+    content:""; position:absolute; top:-1.5px; left:16px; right:16px; height:1.5px; background:var(--paper);
+  }
+  .plate img{ display:block; width:100%; height:auto; border:1px solid var(--line-soft); }
+  .plate figcaption{
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--muted);
+    padding-top:8px; letter-spacing:.03em;
+  }
+
+  .narrative{ margin-top:18px; max-width:64ch; }
+  .narrative p{ margin:0 0 12px; }
+  .narrative strong{ color:var(--ink); }
+
+  .specs{
+    margin-top:20px; border:1.5px solid var(--line); background:var(--panel);
+  }
+  .spec-row{ display:grid; grid-template-columns:150px 1fr; border-top:1.5px solid var(--line); }
+  .spec-row:first-child{ border-top:none; }
+  .spec-row .k{
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem; letter-spacing:.08em; color:var(--muted);
+    text-transform:uppercase; padding:12px 14px; border-right:1.5px solid var(--line);
+  }
+  .spec-row .v{ padding:12px 14px; font-size:.94rem; }
+  @media (max-width:560px){
+    .spec-row{ grid-template-columns:120px 1fr; }
+  }
+  .chips{ display:flex; flex-wrap:wrap; gap:6px; }
+  .chips span{
+    font-family:"IBM Plex Mono",monospace; font-size:.74rem; padding:3px 8px;
+    border:1px solid var(--line-soft); border-radius:3px; color:var(--muted);
+  }
+
+  /* --- BOM / skills table --- */
+  .bom{ width:100%; border-collapse:collapse; margin-top:20px; }
+  .bom caption{ text-align:left; font-family:"IBM Plex Mono",monospace; font-size:.7rem; letter-spacing:.08em; color:var(--muted); text-transform:uppercase; margin-bottom:10px; }
+  .bom th{ text-align:left; font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.08em; color:var(--muted); text-transform:uppercase; padding:8px 10px; border-bottom:1.5px solid var(--line); }
+  .bom td{ padding:10px 10px; border-bottom:1px solid var(--line-soft); font-size:.92rem; vertical-align:top; }
+  .bom td:first-child, .bom th:first-child{ font-family:"IBM Plex Mono",monospace; color:var(--muted); width:34px; }
+  .bom td:nth-child(2), .bom th:nth-child(2){ width:150px; font-weight:600; }
+  .bom-wrap{ overflow-x:auto; }
+
+  footer{ margin-top:8px; padding-block:40px 64px; }
+  .cta{
+    border:1.5px dashed var(--line); padding:22px; text-align:center; background:var(--panel);
+  }
+  .cta p{ margin:0; font-size:1.02rem; }
+  .cta .small{ margin-top:8px; font-size:.85rem; color:var(--muted); }
+  .foot-meta{
+    margin-top:26px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--muted); letter-spacing:.03em;
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="titleblock">
+    <div class="tb-top">
+      <div>
+        <div class="tb-eyebrow">Portafolio técnico · 2026</div>
+        <h1 class="name">Eduardo López</h1>
+        <p class="tb-role">Desarrollador Full Stack &amp; Mobile — construyo sistemas completos: base de datos, API, interfaz y despliegue en producción.</p>
+      </div>
+      <div class="stamp">● DISPONIBLE</div>
+    </div>
+
+    <div class="tb-grid">
+      <div class="tb-cell"><div class="k">Formación</div><div class="v">Ing. Informático, UNERG (2026)</div></div>
+      <div class="tb-cell"><div class="k">Stack principal</div><div class="v">Node.js · React · React Native</div></div>
+      <div class="tb-cell"><div class="k">Disponibilidad</div><div class="v">Freelance y tiempo completo</div></div>
+      <div class="tb-cell"><div class="k">Idioma</div><div class="v">Español (nativo)</div></div>
+    </div>
+
+    <p class="lead">Tres proyectos reales documentados a continuación: el problema que resolvían, cómo se construyeron y el repositorio con el código. Cada uno corre en producción o tiene una demo funcional enlazada.</p>
+  </header>
+
+  <div class="ruler" aria-hidden="true"></div>
+
+  <!-- PROYECTO 01 — MIAFW -->
+  <section class="sheet">
+    <div class="sheet-head">
+      <span class="sheet-num">HOJA 01</span>
+      <h2>The Fitting Room — Miami Fashion Week</h2>
+      <span class="sheet-tag">Web · IA</span>
+    </div>
+
+    <figure class="plate">
+      <img src="images/miafw-coleccion.png" alt="Catálogo de colecciones de The Fitting Room, con prendas de Christian Dior y Carolina Herrera" loading="lazy">
+      <figcaption>Catálogo público de colecciones — captura de datos de prueba en desarrollo.</figcaption>
+    </figure>
+
+    <div class="narrative">
+      <p>Para Miami Fashion Week (MIAFW) construí una aplicación de <strong>prueba virtual de prendas</strong>: el visitante elige una pieza del catálogo, sube una foto de cuerpo completo y ve cómo le queda, generado con IA (FASHN API).</p>
+      <p>El acceso funciona en dos modos: por código enviado al correo (para navegar antes del evento) o por QR físico en el stand (para probarse prendas al instante). Un sistema de créditos con Stripe controla cuántas pruebas puede hacer cada usuario, y el panel de administración gestiona diseñadores, colecciones, prendas y el evento completo.</p>
+    </div>
+
+    <figure class="plate">
+      <img src="images/miafw-tryon.png" alt="Flujo del probador virtual: elegir prenda y subir foto" loading="lazy">
+      <figcaption>Flujo de prueba virtual — selección de prenda y carga de foto.</figcaption>
+    </figure>
+
+    <div class="specs">
+      <div class="spec-row"><div class="k">Cliente</div><div class="v">Miami Fashion Week (MIAFW)</div></div>
+      <div class="spec-row"><div class="k">Mi rol</div><div class="v">Desarrollo full stack, de la base de datos al despliegue</div></div>
+      <div class="spec-row"><div class="k">Stack</div><div class="v"><span class="chips"><span>React</span><span>Vite</span><span>Express</span><span>Prisma</span><span>MariaDB</span><span>Stripe</span><span>Google OAuth</span><span>FASHN API</span></span></div></div>
+      <div class="spec-row"><div class="k">Ingeniería</div><div class="v">Rate limiting, CSRF, pruebas automatizadas y despliegue continuo con GitHub Actions</div></div>
+      <div class="spec-row"><div class="k">Repositorio</div><div class="v"><a class="repo-link" href="https://github.com/eduardoalopezt2004-oss/simulator-vton-portfolio" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>simulator-vton-portfolio</a></div></div>
+    </div>
+  </section>
+
+  <div class="ruler" aria-hidden="true"></div>
+
+  <!-- PROYECTO 02 — Inventario -->
+  <section class="sheet">
+    <div class="sheet-head">
+      <span class="sheet-num">HOJA 02</span>
+      <h2>Sistema de inventario de repuestos</h2>
+      <span class="sheet-tag">Web · Logística</span>
+    </div>
+
+    <figure class="plate">
+      <img src="images/inventario-stock.png" alt="Panel de monitoreo de stock con alertas de productos críticos" loading="lazy">
+      <figcaption>Monitoreo de stock en tiempo real — local y depósito, con alertas por producto.</figcaption>
+    </figure>
+
+    <div class="narrative">
+      <p>Un negocio de repuestos y lubricantes necesitaba dejar de llevar el inventario en hojas de cálculo: no sabían qué se estaba por agotar hasta que ya faltaba, y contar el stock a mano tomaba horas.</p>
+      <p>Construí un sistema con <strong>escaneo de códigos QR</strong> para registrar entradas y salidas en segundos, un dashboard que separa el stock del local y del depósito y marca en rojo lo crítico, y un módulo de ventas con conversión automática USD/Bs. Incluye reportes por categoría, movimientos e inventario, e importación de documentos de proveedores con OCR.</p>
+    </div>
+
+    <figure class="plate">
+      <img src="images/inventario-productos.png" alt="Listado de productos con filtros por marca, precio y stock" loading="lazy">
+      <figcaption>Catálogo de productos con búsqueda y filtros por marca, precio y cantidad.</figcaption>
+    </figure>
+
+    <div class="specs">
+      <div class="spec-row"><div class="k">Mi rol</div><div class="v">Desarrollo full stack, diseño de base de datos y despliegue</div></div>
+      <div class="spec-row"><div class="k">Stack</div><div class="v"><span class="chips"><span>React</span><span>Node.js</span><span>Express</span><span>MongoDB</span><span>Chart.js</span><span>Tesseract OCR</span></span></div></div>
+      <div class="spec-row"><div class="k">Destacados</div><div class="v">Escaneo QR desde el navegador, alertas de stock crítico, reportes exportables</div></div>
+      <div class="spec-row"><div class="k">Repositorio</div><div class="v"><a class="repo-link" href="https://github.com/eduardoalopezt2004-oss/inventario-repuestos-portfolio" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>inventario-repuestos-portfolio</a></div></div>
+      <div class="spec-row"><div class="k">Demo en vivo</div><div class="v"><a class="repo-link" href="https://inventario-lubrieduarcars.vercel.app" target="_blank" rel="noopener">inventario-lubrieduarcars.vercel.app</a></div></div>
+    </div>
+  </section>
+
+  <div class="ruler" aria-hidden="true"></div>
+
+  <!-- PROYECTO 03 — Caja de ahorro -->
+  <section class="sheet">
+    <div class="sheet-head">
+      <span class="sheet-num">HOJA 03</span>
+      <h2>Visualizador de caja de ahorro grupal</h2>
+      <span class="sheet-tag">Web · Dashboards</span>
+    </div>
+
+    <figure class="plate">
+      <img src="images/caja-dashboard.png" alt="Dashboard de la caja de ahorro con totales, gráfica de barras y top de aportantes" loading="lazy">
+      <figcaption>Dashboard principal — totales, distribución por participante y ranking de aportantes.</figcaption>
+    </figure>
+
+    <div class="narrative">
+      <p>Un grupo de ahorro con varios participantes principales y decenas de aportantes necesitaba una forma clara de ver quién había aportado cuánto, sin depender de una hoja de cálculo compartida que cualquiera podía romper por error.</p>
+      <p>Diseñé un panel con roles (admin, editor, visor) donde cada aportante queda asociado a un participante principal, con gráficas de distribución, un ranking de los mayores aportantes y exportación a JSON, CSV y PDF para llevar registro fuera del sistema.</p>
+    </div>
+
+    <figure class="plate">
+      <img src="images/caja-estadisticas.png" alt="Vista de estadísticas con gráfica de dona y ranking de aportantes" loading="lazy">
+      <figcaption>Estadísticas detalladas — distribución por participante y top de aportantes.</figcaption>
+    </figure>
+
+    <div class="specs">
+      <div class="spec-row"><div class="k">Mi rol</div><div class="v">Desarrollo full stack y despliegue en servidor propio</div></div>
+      <div class="spec-row"><div class="k">Stack</div><div class="v"><span class="chips"><span>Node.js</span><span>Express</span><span>Sequelize</span><span>PostgreSQL/SQLite</span><span>JWT</span></span></div></div>
+      <div class="spec-row"><div class="k">Destacados</div><div class="v">Roles de acceso, exportación de datos, despliegue con Docker y Nginx</div></div>
+      <div class="spec-row"><div class="k">Repositorio</div><div class="v"><a class="repo-link" href="https://gitlab.com/eduardoalopezt2004/caja-de-ahorro-portfolio" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M15.68 8.59l-.83-2.56L13.1 1.9a.34.34 0 0 0-.65 0L10.7 6.03H5.3L3.55 1.9a.34.34 0 0 0-.65 0L1.15 6.03l-.83 2.56a.65.65 0 0 0 .24.73l7.44 5.4 7.44-5.4a.65.65 0 0 0 .24-.73z"/></svg>caja-de-ahorro-portfolio</a></div></div>
+    </div>
+  </section>
+
+  <div class="ruler" aria-hidden="true"></div>
+
+  <section>
+    <div class="tb-eyebrow">Lista de componentes</div>
+    <div class="bom-wrap">
+      <table class="bom">
+        <caption>Stack completo, agrupado por área</caption>
+        <thead>
+          <tr><th>#</th><th>Área</th><th>Componentes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>01</td><td>Backend</td><td>Node.js, Express, NestJS, Laravel, Django · APIs REST y GraphQL · JWT/OAuth2 · Prisma, TypeORM, Sequelize</td></tr>
+          <tr><td>02</td><td>Frontend</td><td>React, Next.js, Vite, Tailwind CSS, Bootstrap · PWAs y diseño responsive</td></tr>
+          <tr><td>03</td><td>Móvil</td><td>React Native (Android), React Navigation, generación de APK</td></tr>
+          <tr><td>04</td><td>Datos</td><td>PostgreSQL, MySQL/MariaDB, MongoDB, SQLite</td></tr>
+          <tr><td>05</td><td>DevOps</td><td>Linux (Ubuntu), Nginx, PM2, Docker, GitLab CI/CD, Let's Encrypt</td></tr>
+          <tr><td>06</td><td>IA y automatización</td><td>OpenAI, FASHN API, Tesseract OCR, Python (Pandas, Selenium)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <div class="cta">
+      <p>¿Tienes un sistema que construir, mantener o llevar a producción?</p>
+      <p class="small">Escríbeme por la plataforma donde encontraste este portafolio.</p>
+    </div>
+    <div class="foot-meta">
+      <span>EDUARDO LÓPEZ — ING. INFORMÁTICO</span>
+      <span>REV. 2026</span>
+    </div>
+  </footer>
+
+</div>
